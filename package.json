@@ -1,128 +1,146 @@
 {
-    "name": "itunes-vscode",
-    "displayName": "iTunes & Apple Music Player",
-    "description": "Control iTunes from within Visual Studio Code!",
-    "version": "0.16.5",
-    "publisher": "PsykoSoldi3r",
-    "icon": "images/icon.png",
-    "engines": {
-        "vscode": "^1.5.0"
+  "name": "itunes-vscode",
+  "displayName": "iTunes & Apple Music Player",
+  "description": "Control iTunes from within Visual Studio Code!",
+  "version": "0.16.5",
+  "publisher": "PsykoSoldi3r",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "repository": {
+    "url": "https://github.com/PsykoSoldi3r/vscode-itunes"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "itunes-vscode.playerView",
+          "name": "Apple Music Player"
+        }
+      ]
     },
-    "repository": {
-        "url": "https://github.com/PsykoSoldi3r/vscode-itunes"
-    },
-    "categories": [
-        "Other"
+    "commands": [
+      {
+        "command": "itunes.pause",
+        "title": "iTunes & Apple Music: Pause"
+      },
+      {
+        "command": "itunes.play",
+        "title": "iTunes & Apple Music: Play"
+      },
+      {
+        "command": "itunes.nextTrack",
+        "title": "iTunes & Apple Music: Next Track"
+      },
+      {
+        "command": "itunes.previousTrack",
+        "title": "iTunes & Apple Music: Previous Track"
+      },
+      {
+        "command": "itunes.open",
+        "title": "iTunes & Apple Music: Show"
+      },
+      {
+        "command": "itunes.repeat.set.one",
+        "title": "iTunes & Apple Music: Set Repeat - One"
+      },
+      {
+        "command": "itunes.repeat.set.all",
+        "title": "iTunes & Apple Music: Set Repeat - All"
+      },
+      {
+        "command": "itunes.repeat.set.off",
+        "title": "iTunes & Apple Music: Set Repeat - Off"
+      },
+      {
+        "command": "itunes.volume",
+        "title": "iTunes & Apple Music: Mute/Unmute"
+      },
+      {
+        "command": "itunes.shuffle.on",
+        "title": "iTunes & Apple Music: Set Shuffle - On"
+      },
+      {
+        "command": "itunes.shuffle.off",
+        "title": "iTunes & Apple Music: Set Shuffle - Off"
+      },
+      {
+        "command": "itunes.likeTrack",
+        "title": "iTunes & Apple Music: Like Current Track"
+      },
+      {
+        "command": "itunes.dislikeTrack",
+        "title": "iTunes & Apple Music: Dislike Current Track"
+      },
+      {
+        "command": "itunes.addTrack",
+        "title": "iTunes & Apple Music: Add track to your master library"
+      }
     ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "itunes.pause",
-                "title": "iTunes & Apple Music: Pause"
-            },
-            {
-                "command": "itunes.play",
-                "title": "iTunes & Apple Music: Play"
-            },
-            {
-                "command": "itunes.nextTrack",
-                "title": "iTunes & Apple Music: Next Track"
-            },
-            {
-                "command": "itunes.previousTrack",
-                "title": "iTunes & Apple Music: Previous Track"
-            },
-            {
-                "command": "itunes.open",
-                "title": "iTunes & Apple Music: Show"
-            },
-            {
-                "command": "itunes.repeat.set.one",
-                "title": "iTunes & Apple Music: Set Repeat - One"
-            },
-            {
-                "command": "itunes.repeat.set.all",
-                "title": "iTunes & Apple Music: Set Repeat - All"
-            },
-            {
-                "command": "itunes.repeat.set.off",
-                "title": "iTunes & Apple Music: Set Repeat - Off"
-            },
-            {
-                "command": "itunes.volume",
-                "title": "iTunes & Apple Music: Mute/Unmute"
-            },
-            {
-                "command": "itunes.shuffle.on",
-                "title": "iTunes & Apple Music: Set Shuffle - On"
-            },
-            {
-                "command": "itunes.shuffle.off",
-                "title": "iTunes & Apple Music: Set Shuffle - Off"
-            },
-            {
-                "command": "itunes.likeTrack",
-                "title": "iTunes & Apple Music: Like Current Track"
-            },
-            {
-                "command": "itunes.dislikeTrack",
-                "title": "iTunes & Apple Music: Dislike Current Track"
-            },
-            {
-                "command": "itunes.addTrack",
-                "title": "iTunes & Apple Music: Add track to your master library"
-            }
-        ],
-        "configuration": [
-            {
-                "title": "",
-                "type": "object",
-                "properties": {
-                    "itunes.updateInterval": {
-                        "type": "number",
-                        "default": 5000,
-                        "description": "Interval of iTunes status check. (Higher value = lower CPU usage)"
-                    },
-                    "itunes.languageOverride": {
-                        "type": "string",
-                        "default": "en",
-                        "description": "Running language of iTunes or Apple Music. (supported: en, nl, zh)"
-                    },
-                    "itunes.skipTrackByTrackDislike": {
-                        "type": "boolean",
-                        "default": "en",
-                        "description": "Skip track after disliking the track?"
-                    },
-                    "itunes.titleStringLimit": {
-                        "type": "number",
-                        "default": 64,
-                        "description": "Max display length of track artist & title (disable = 0)"
-                    }
-                }
-            }
-        ]
-    },
-    "extensionKind": "ui",
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/mocha": "^2.2.32",
-        "@types/node": "^6.0.40",
-        "mocha": "^5.2.0",
-        "typescript": "^2.0.3",
-        "vscode": "^1.1.36"
-    },
-    "dependencies": {
-        "applescript": "^1.0.0",
-        "hoek": "^5.0.3",
-        "minimist": "^1.2.5"
-    }
+    "configuration": [
+      {
+        "title": "",
+        "type": "object",
+        "properties": {
+          "itunes.updateInterval": {
+            "type": "number",
+            "default": 5000,
+            "description": "Interval of iTunes status check. (Higher value = lower CPU usage)"
+          },
+          "itunes.languageOverride": {
+            "type": "string",
+            "default": "en",
+            "description": "Running language of iTunes or Apple Music. (supported: en, nl, zh)"
+          },
+          "itunes.skipTrackByTrackDislike": {
+            "type": "boolean",
+            "default": "en",
+            "description": "Skip track after disliking the track?"
+          },
+          "itunes.titleStringLimit": {
+            "type": "number",
+            "default": 64,
+            "description": "Max display length of track artist & title (disable = 0)"
+          }
+        }
+      }
+    ]
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "applescript": "^1.0.0",
+    "hoek": "^5.0.3",
+    "image-to-base64": "^2.2.0",
+    "minimist": "^1.2.5"
+  }
 }
