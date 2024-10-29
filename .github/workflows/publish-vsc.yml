@@ -1,24 +1,27 @@
-name: Publish to Visual Studio Code Marketplace
+name: Publish to Github releases
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "v*"
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout
-       uses: actions/checkout@v1
-     - name: npm install
-       run: |
-         npm install
-     - name: Install VSCE
-       run: |
-         sudo npm install -g vsce
-     - name: Publish
-       run: |
-         vsce publish -p $VSCE_TOKEN
-       env:
-         VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: npm install
+        run: |
+          npm install
+      - name: Install VSCE
+        run: |
+          sudo npm install -g vsce
+      - name: Publish
+        run: |
+          vsce package
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "*.vsix"
