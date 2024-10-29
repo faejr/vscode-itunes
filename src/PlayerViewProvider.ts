@@ -40,7 +40,6 @@ export default class PlayerViewProvider implements vscode.WebviewViewProvider {
 
   public setArtwork(artwork: string) {
     if (this._view) {
-      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
       this._view.webview.postMessage({
         type: "setArtwork",
         artwork: `${vscode.Uri.parse(artwork)}`,
@@ -50,7 +49,6 @@ export default class PlayerViewProvider implements vscode.WebviewViewProvider {
 
   public setSong(data: { artist: string; name: string; album: string }) {
     if (this._view) {
-      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
       this._view.webview.postMessage({
         type: "setSong",
         data,
