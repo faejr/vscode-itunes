@@ -3,7 +3,8 @@ body {
   overflow: hidden;
 }
 
-.player {
+.song {
+  font-weight: bold;
 }
 
 .info {
